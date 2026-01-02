@@ -125,7 +125,7 @@ export default function ReferendumWithPulse() {
                                     <h3 className="text-2xl font-bold text-center mb-8 text-primary-green">আপনার মতামত গ্রহণ করা হয়েছে</h3>
 
                                     {/* Progress Bars Container */}
-                                    <div className="flex h-32 rounded-3xl overflow-hidden relative shadow-inner bg-gray-100">
+                                    <div className="flex h-14 md:h-32 rounded-3xl overflow-hidden relative shadow-inner bg-gray-100">
                                         {/* Support Bar */}
                                         <motion.div
                                             initial={{ width: 0 }}
@@ -133,13 +133,13 @@ export default function ReferendumWithPulse() {
                                             transition={{ duration: 1.5, ease: "easeOut" }}
                                             className="bg-primary-green relative group flex items-center justify-center cursor-help"
                                         >
-                                            <span className="text-4xl md:text-6xl font-bold text-white/90">
+                                            <span className="text-4xl md:text-6xl font-bold text-white/90 hidden md:block">
                                                 {stats.support}%
                                             </span>
-                                            <span className="absolute bottom-4 text-sm font-medium text-white/80">সমর্থক</span>
+                                            <span className="absolute bottom-4 text-sm font-medium text-white/80 hidden md:block">সমর্থক</span>
 
                                             {/* Tooltip */}
-                                            <div className="absolute -top-16 opacity-0 group-hover:opacity-100 transition-opacity bg-white px-4 py-2 rounded-lg whitespace-nowrap text-sm border border-gray-200 shadow-lg text-text-primary font-bold z-50 pointer-events-none">
+                                            <div className="absolute -top-16 opacity-0 group-hover:opacity-100 transition-opacity bg-white px-4 py-2 rounded-lg whitespace-nowrap text-sm border border-gray-200 shadow-lg text-text-primary font-bold z-50 pointer-events-none hidden md:block">
                                                 {stats.totalVotes} জন মানুষ ভোট দিয়েছেন
                                             </div>
                                         </motion.div>
@@ -151,16 +151,29 @@ export default function ReferendumWithPulse() {
                                             transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
                                             className="bg-accent-red relative group flex items-center justify-center cursor-help"
                                         >
-                                            <span className="text-3xl md:text-5xl font-bold text-white/90">
+                                            <span className="text-3xl md:text-5xl font-bold text-white/90 hidden md:block">
                                                 {stats.dissent}%
                                             </span>
-                                            <span className="absolute bottom-4 text-sm font-medium text-white/80">ভিন্নমত</span>
+                                            <span className="absolute bottom-4 text-sm font-medium text-white/80 hidden md:block">ভিন্নমত</span>
 
                                             {/* Tooltip */}
-                                            <div className="absolute -top-16 opacity-0 group-hover:opacity-100 transition-opacity bg-white px-4 py-2 rounded-lg whitespace-nowrap text-sm border border-gray-200 shadow-lg text-text-primary font-bold z-50 pointer-events-none">
+                                            <div className="absolute -top-16 opacity-0 group-hover:opacity-100 transition-opacity bg-white px-4 py-2 rounded-lg whitespace-nowrap text-sm border border-gray-200 shadow-lg text-text-primary font-bold z-50 pointer-events-none hidden md:block">
                                                 বাকিরা ভিন্নমত পোষণ করেছেন
                                             </div>
                                         </motion.div>
+                                    </div>
+
+                                    {/* Mobile Stats Below Bar */}
+                                    <div className="flex justify-between items-start mt-3 px-1 md:hidden">
+                                        <div className="text-left">
+                                            <div className="text-2xl font-bold text-primary-green">{stats.support}%</div>
+                                            <div className="text-xs font-medium text-text-secondary">সমর্থক</div>
+                                            <div className="text-[10px] text-text-tertiary mt-0.5">{stats.totalVotes} ভোট</div>
+                                        </div>
+                                        <div className="text-right">
+                                            <div className="text-2xl font-bold text-accent-red">{stats.dissent}%</div>
+                                            <div className="text-xs font-medium text-text-secondary">ভিন্নমত</div>
+                                        </div>
                                     </div>
 
                                     <div className="text-center mt-8">

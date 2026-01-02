@@ -35,7 +35,7 @@ const imagesRow2 = [
 ];
 
 export default function PhotoCarousel() {
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [selectedImage, setSelectedImage] = useState<{ src: string; aspect: string } | null>(null);
 
     return (
         <section className="py-20 overflow-hidden bg-white/30 backdrop-blur-sm border-y border-white/20 relative z-30">
@@ -55,7 +55,7 @@ export default function PhotoCarousel() {
                         {[...imagesRow1, ...imagesRow1].map((img, index) => (
                             <div
                                 key={`r1-${index}`}
-                                onClick={() => setSelectedImage(img.src)}
+                                onClick={() => setSelectedImage({ src: img.src, aspect: img.aspect })}
                                 className={`relative rounded-2xl overflow-hidden cursor-zoom-in shrink-0 ${img.aspect} ${img.width}`}
                             >
                                 <div className="group w-full h-full relative">
@@ -86,7 +86,7 @@ export default function PhotoCarousel() {
                         {[...imagesRow2, ...imagesRow2].map((img, index) => (
                             <div
                                 key={`r2-${index}`}
-                                onClick={() => setSelectedImage(img.src)}
+                                onClick={() => setSelectedImage({ src: img.src, aspect: img.aspect })}
                                 className={`relative rounded-2xl overflow-hidden cursor-zoom-in shrink-0 ${img.aspect} ${img.width}`}
                             >
                                 <div className="group w-full h-full relative">
@@ -123,18 +123,18 @@ export default function PhotoCarousel() {
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
-                            className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black"
+                            className={`relative w-full max-w-5xl max-h-[85vh] rounded-2xl overflow-hidden shadow-2xl bg-black ${selectedImage.aspect}`}
                             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
                         >
                             <Image
-                                src={selectedImage}
+                                src={selectedImage.src}
                                 alt="Full size preview"
                                 fill
                                 className="object-contain"
                             />
                             <button
                                 onClick={() => setSelectedImage(null)}
-                                className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
+                                className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors z-10"
                                 aria-label="Close preview"
                             >
                                 <X size={24} />
