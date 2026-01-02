@@ -70,12 +70,12 @@ export default function CharterFeatures() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-4xl font-bold text-center mb-16 text-text-primary"
+                    className="text-4xl md:text-5xl font-abu-sayed text-center mb-16 text-text-primary"
                 >
                     জুলাই সনদের মূল স্তম্ভসমূহ
                 </motion.h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto md:auto-rows-[250px]">
                     {features.map((feature) => (
                         <motion.div
                             key={feature.id}

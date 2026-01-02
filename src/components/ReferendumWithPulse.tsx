@@ -25,7 +25,7 @@ export default function ReferendumWithPulse() {
                             viewport={{ once: true }}
                             className="text-3xl md:text-4xl font-bold text-center mb-8 text-text-primary leading-tight"
                         >
-                            ভোটারদের প্রশ্ন করা হবে: <br className="hidden md:block" />
+
                             “আপনি কি জুলাই জাতীয় সনদ (সংবিধান সংস্কার) বাস্তবায়ন আদেশ, ২০২৫ এবং নিম্নোক্ত প্রস্তাবাবলিতে সম্মত?”
                         </motion.h2>
 
@@ -96,7 +96,7 @@ export default function ReferendumWithPulse() {
                                         ভোটাররা এই চারটি বিষয়ের জন্য একটি মাত্র "হ্যাঁ" বা "না" ভোটের মাধ্যমে মতামত প্রদান করবেন।
                                     </p>
 
-                                    <div className="flex justify-center gap-6 pb-4">
+                                    <div className="flex flex-wrap justify-center gap-6 pb-4">
                                         <motion.button
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}

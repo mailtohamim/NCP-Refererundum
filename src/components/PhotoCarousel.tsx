@@ -7,30 +7,31 @@ import { X, ZoomIn } from "lucide-react";
 
 // Placeholder images
 // Local images 1 to 20
+// Local images 1 to 20 with Responsive Width Classes
 const imagesRow1 = [
-    { src: "/1.jpg", width: "300px", aspect: "aspect-video" },
-    { src: "/2.jpg", width: "200px", aspect: "aspect-square" },
-    { src: "/3.jpg", width: "250px", aspect: "aspect-[4/5]" },
-    { src: "/4.jpg", width: "350px", aspect: "aspect-video" },
-    { src: "/5.jpg", width: "200px", aspect: "aspect-square" },
-    { src: "/6.jpg", width: "280px", aspect: "aspect-[3/2]" },
-    { src: "/7.jpg", width: "220px", aspect: "aspect-[4/5]" },
-    { src: "/8.jpg", width: "300px", aspect: "aspect-video" },
-    { src: "/9.jpg", width: "200px", aspect: "aspect-square" },
-    { src: "/10.jpg", width: "260px", aspect: "aspect-[16/9]" },
+    { src: "/1.jpg", width: "w-[200px] md:w-[300px]", aspect: "aspect-video" },
+    { src: "/2.jpg", width: "w-[150px] md:w-[200px]", aspect: "aspect-square" },
+    { src: "/3.jpg", width: "w-[180px] md:w-[250px]", aspect: "aspect-[4/5]" },
+    { src: "/4.jpg", width: "w-[250px] md:w-[350px]", aspect: "aspect-video" },
+    { src: "/5.jpg", width: "w-[150px] md:w-[200px]", aspect: "aspect-square" },
+    { src: "/6.jpg", width: "w-[200px] md:w-[280px]", aspect: "aspect-[3/2]" },
+    { src: "/7.jpg", width: "w-[160px] md:w-[220px]", aspect: "aspect-[4/5]" },
+    { src: "/8.jpg", width: "w-[200px] md:w-[300px]", aspect: "aspect-video" },
+    { src: "/9.jpg", width: "w-[150px] md:w-[200px]", aspect: "aspect-square" },
+    { src: "/10.jpg", width: "w-[180px] md:w-[260px]", aspect: "aspect-[16/9]" },
 ];
 
 const imagesRow2 = [
-    { src: "/11.jpg", width: "280px", aspect: "aspect-[3/2]" },
-    { src: "/12.jpg", width: "220px", aspect: "aspect-[4/5]" },
-    { src: "/13.jpg", width: "320px", aspect: "aspect-video" },
-    { src: "/14.jpg", width: "200px", aspect: "aspect-square" },
-    { src: "/15.jpg", width: "250px", aspect: "aspect-[4/5]" },
-    { src: "/16.jpg", width: "300px", aspect: "aspect-video" },
-    { src: "/17.jpg", width: "200px", aspect: "aspect-square" },
-    { src: "/18.jpg", width: "260px", aspect: "aspect-[16/9]" },
-    { src: "/19.jpg", width: "240px", aspect: "aspect-[4/5]" },
-    { src: "/20.jpg", width: "300px", aspect: "aspect-video" },
+    { src: "/11.jpg", width: "w-[200px] md:w-[280px]", aspect: "aspect-[3/2]" },
+    { src: "/12.jpg", width: "w-[160px] md:w-[220px]", aspect: "aspect-[4/5]" },
+    { src: "/13.jpg", width: "w-[220px] md:w-[320px]", aspect: "aspect-video" },
+    { src: "/14.jpg", width: "w-[150px] md:w-[200px]", aspect: "aspect-square" },
+    { src: "/15.jpg", width: "w-[180px] md:w-[250px]", aspect: "aspect-[4/5]" },
+    { src: "/16.jpg", width: "w-[200px] md:w-[300px]", aspect: "aspect-video" },
+    { src: "/17.jpg", width: "w-[150px] md:w-[200px]", aspect: "aspect-square" },
+    { src: "/18.jpg", width: "w-[180px] md:w-[260px]", aspect: "aspect-[16/9]" },
+    { src: "/19.jpg", width: "w-[160px] md:w-[240px]", aspect: "aspect-[4/5]" },
+    { src: "/20.jpg", width: "w-[200px] md:w-[300px]", aspect: "aspect-video" },
 ];
 
 export default function PhotoCarousel() {
@@ -39,7 +40,7 @@ export default function PhotoCarousel() {
     return (
         <section className="py-20 overflow-hidden bg-white/30 backdrop-blur-sm border-y border-white/20 relative z-30">
             <div className="container mx-auto px-4 mb-12">
-                <h2 className="text-3xl font-bold text-center text-text-primary mb-2">
+                <h2 className="text-4xl md:text-5xl font-abu-sayed text-center text-text-primary mb-2">
                     গণঅভ্যুত্থানের স্মৃতি
                 </h2>
             </div>
@@ -55,8 +56,7 @@ export default function PhotoCarousel() {
                             <div
                                 key={`r1-${index}`}
                                 onClick={() => setSelectedImage(img.src)}
-                                className={`relative rounded-2xl overflow-hidden cursor-zoom-in shrink-0 ${img.aspect}`}
-                                style={{ width: img.width }}
+                                className={`relative rounded-2xl overflow-hidden cursor-zoom-in shrink-0 ${img.aspect} ${img.width}`}
                             >
                                 <div className="group w-full h-full relative">
                                     <Image
@@ -87,8 +87,7 @@ export default function PhotoCarousel() {
                             <div
                                 key={`r2-${index}`}
                                 onClick={() => setSelectedImage(img.src)}
-                                className={`relative rounded-2xl overflow-hidden cursor-zoom-in shrink-0 ${img.aspect}`}
-                                style={{ width: img.width }}
+                                className={`relative rounded-2xl overflow-hidden cursor-zoom-in shrink-0 ${img.aspect} ${img.width}`}
                             >
                                 <div className="group w-full h-full relative">
                                     <Image

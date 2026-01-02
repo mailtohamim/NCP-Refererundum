@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ScanFace, Vote, CheckCircle2 } from "lucide-react";
+import { ScanFace, Vote, CheckCircle2, ArrowDown, ChevronsRight } from "lucide-react";
 
 const steps = [
     {
@@ -34,38 +34,45 @@ export default function VotingGuide() {
                     কিভাবে ভোট দেবেন
                 </motion.h2>
 
-                <div className="relative flex flex-col md:flex-row justify-center gap-8 md:gap-12 items-start">
-                    {/* Glowing Line (Desktop) - Updated color for light theme */}
-                    <motion.div
-                        initial={{ scaleX: 0 }}
-                        whileInView={{ scaleX: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.5, delay: 0.5 }}
-                        className="hidden md:block absolute top-12 left-20 right-20 h-1 bg-gradient-to-r from-transparent via-primary-green/50 to-transparent z-0"
-                    />
+                <div className="relative flex flex-col md:flex-row justify-center gap-6 md:gap-4 items-center">
+                    {/* Arrows replace the line */}
 
                     {steps.map((step, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.3 }}
-                            className="relative z-10 flex-1 w-full max-w-[350px] mx-auto"
-                        >
-                            <div className="glass-panel p-8 rounded-3xl text-center relative overflow-hidden group bg-white/60">
-                                <div className="glass-reflection absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div key={index} className="contents">
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.3 }}
+                                className="relative z-10 flex-1 w-full max-w-[350px] mx-auto"
+                            >
+                                <div className="glass-panel p-8 rounded-3xl text-center relative overflow-hidden group bg-white/60">
+                                    <div className="glass-reflection absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                <div className="w-16 h-16 rounded-full bg-primary-green flex items-center justify-center text-white text-xl font-bold mx-auto mb-6 shadow-lg shadow-primary-green/30 relative z-20 group-hover:scale-110 transition-transform duration-300">
-                                    {step.icon}
+                                    <div className="w-16 h-16 rounded-full bg-primary-green flex items-center justify-center text-white text-xl font-bold mx-auto mb-6 shadow-lg shadow-primary-green/30 relative z-20 group-hover:scale-110 transition-transform duration-300">
+                                        {step.icon}
+                                    </div>
+
+                                    <h3 className="text-2xl font-bold mb-3 text-text-primary">{step.title}</h3>
+                                    <p className="text-text-secondary font-medium">
+                                        {step.sub}
+                                    </p>
                                 </div>
+                            </motion.div>
 
-                                <h3 className="text-2xl font-bold mb-3 text-text-primary">{step.title}</h3>
-                                <p className="text-text-secondary font-medium">
-                                    {step.sub}
-                                </p>
-                            </div>
-                        </motion.div>
+                            {/* Divider Arrows */}
+                            {index < steps.length - 1 && (
+                                <div className="flex flex-col items-center justify-center text-primary-green/40 my-4 md:my-0 md:mx-2 shrink-0">
+                                    {/* Mobile: Down Arrow */}
+                                    <ArrowDown className="md:hidden w-8 h-8 animate-bounce" />
+                                    {/* Desktop: Double Right Arrows */}
+                                    <div className="hidden md:flex flex-row -space-x-4">
+                                        <ChevronsRight className="w-10 h-10 opacity-50" />
+                                        <ChevronsRight className="w-10 h-10" />
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     ))}
                 </div>
             </div>

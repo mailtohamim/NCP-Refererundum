@@ -28,7 +28,7 @@ export default function Hero() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-6xl md:text-8xl mb-6 leading-tight font-abu-sayed text-white mix-blend-overlay drop-shadow-xl"
+                    className="text-4xl md:text-8xl mb-6 leading-tight font-abu-sayed text-white mix-blend-overlay drop-shadow-xl"
                 >
                     আগামীর সংবিধান, <br />
                     <span className="text-white mix-blend-normal">

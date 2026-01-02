@@ -58,25 +58,30 @@ const TIMELINE_DATA = [
 // --- 3D Components ---
 
 const CameraRig = ({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) => {
-    const { camera } = useThree();
+    const { camera, size } = useThree();
+    const isMobile = size.width < 768; // Standard tablet/mobile breakpoint
 
     useFrame(() => {
         // Get current scroll value (0 to 1) from Framer Motion value
         const rawScroll = scrollYProgress.get();
 
         // Add a "Hold" phase at the end.
-        // Camera moves from 0% to 85% of the scroll.
-        // From 85% to 100%, the camera stays locked on the final card.
-        // This gives a feeling of "pausing" on the final result before the next section appears.
         const effectiveScroll = Math.min(rawScroll / 0.85, 1.0);
 
-        // Scroll 0 -> 1 (mapped) maps to Z: 5 -> -40
-        // Start: Z=5 (10 units from first card at -5)
-        // End: Z=-40 (15 units from last card at -55)
-        const targetZ = 5 - (effectiveScroll * 45);
+        // Adjust Start/End logic for Mobile
+        // Mobile needs to be further back to see the width of the cards
+        // Start: Z = 5 (Desktop) / 10 (Mobile)
+        // End: Z = -40 (Desktop) / -30 (Mobile - shorter travel as we start further back)
+
+        const startZ = isMobile ? 12 : 5;
+        const endZ = isMobile ? -35 : -40;
+
+        const targetZ = startZ - (effectiveScroll * (startZ - endZ));
 
         // Smooth movement
         camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ, 0.1);
+
+        // Optional: Add slight Y parallax or adjustment if needed
     });
     return null;
 };
@@ -153,8 +158,8 @@ const ChronoCard = ({ data }: { data: any }) => {
                     }}
                 >
                     <div className={`
-                        w-[320px] p-6 rounded-xl border backdrop-blur-sm shadow-xl
-                        bg-white/80 border-white/60
+                        w-[85vw] max-w-[320px] p-6 rounded-xl border shadow-xl
+                        bg-white/95 border-white/60
                         flex flex-col gap-2 selection:bg-primary-green/20
                     `}>
                         <div className="flex justify-between items-center border-b border-gray-200 pb-2 mb-1">
@@ -174,40 +179,11 @@ const ChronoCard = ({ data }: { data: any }) => {
                 </Html>
             </Float>
 
-            {/* Reflection (Duplicated HTML, flipped, lower opacity) */}
-            <group position={[0, -3.5, 0]} scale={[1, -1, 1]}>
-                <Html
-                    transform
-                    // No occlusion for reflection either
-                    distanceFactor={6}
-                    style={{
-                        opacity: 0.15, // Faint reflection
-                        filter: 'blur(1px)',
-                        pointerEvents: 'none',
-                        transform: 'scaleY(-1)'
-                    }}
-                    position={[0, 0.5, 0]}
-                >
-                    <div className={`
-                        w-[320px] p-6 rounded-xl border backdrop-blur-sm
-                        bg-white/40 border-white/20
-                        flex flex-col gap-2
-                    `}>
-                        <div className="flex justify-between items-center border-b border-gray-200 pb-2 mb-1">
-                            <span className={`text-3xl font-abu-sayed text-transparent bg-clip-text bg-gradient-to-r ${data.color === '#D91E36' ? 'from-red-600 to-orange-600' :
-                                data.color === '#1F2937' ? 'from-gray-700 to-gray-900' :
-                                    'from-primary-green to-emerald-500'
-                                }`}>
-                                {data.year}
-                            </span>
-                        </div>
-                        <h3 className="text-xl text-gray-800 font-abu-sayed leading-tight">{data.title}</h3>
-                        <p className="text-sm text-gray-600 font-anek leading-snug">
-                            {data.desc}
-                        </p>
-                    </div>
-                </Html>
-            </group>
+            {/* Simple Floor Shadow instead of expensive HTML Reflection */}
+            <mesh position={[0, -3.5, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[1, 1, 1]}>
+                <circleGeometry args={[1.5, 32]} />
+                <meshBasicMaterial color="#000000" transparent opacity={0.05} />
+            </mesh>
         </group>
     );
 }
@@ -223,7 +199,7 @@ export default function HistoryTimeTunnel({ scrollYProgress }: HistoryTimeTunnel
             <Canvas
                 camera={{ position: [0, 3, 10], fov: 50, rotation: [-0.2, 0, 0] }} // Higher up, looking down slightly
                 gl={{ antialias: true }}
-                dpr={[1, 2]}
+                dpr={[1, 1.5]}
             >
                 {/* <color attach="background" args={['#e7f9e4']} /> */}
                 {/* Fog removed to see background image */}

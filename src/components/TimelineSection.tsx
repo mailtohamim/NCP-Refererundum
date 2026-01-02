@@ -16,6 +16,7 @@ export default function TimelineSection() {
         <section ref={containerRef} className="relative h-[1200vh]">
             <div className="sticky top-0 h-screen w-full overflow-hidden">
                 {/* Background Image - Timeline.jpg (Grayscale) */}
+                {/* Background Image - Timeline.jpg (Grayscale) */}
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/Timeline.jpg"
@@ -33,8 +34,8 @@ export default function TimelineSection() {
 
                 {/* Overlay UI */}
                 <div className="absolute top-8 left-8 z-50 pointer-events-none">
-                    <h2 className="text-primary-green/70 text-sm uppercase tracking-[0.2em] mb-2 font-bold backdrop-blur-sm bg-white/30 px-3 py-1 rounded-full inline-block">ঐতিহাসিক প্রেক্ষাপট</h2>
-                    <h1 className="text-primary-green text-4xl font-abu-sayed drop-shadow-sm">সময়ের যাত্রা</h1>
+
+                    <h1 className="text-primary-green text-2xl md:text-4xl font-abu-sayed drop-shadow-sm">সময়ের যাত্রা</h1>
                 </div>
 
                 {/* Progression Bar */}
