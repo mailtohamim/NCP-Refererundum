@@ -201,9 +201,9 @@ export default function HistoryTimeTunnel({ scrollYProgress }: HistoryTimeTunnel
                 gl={{ antialias: true }}
                 dpr={[1, 1.5]}
             >
-                {/* <color attach="background" args={['#e7f9e4']} /> */}
+                <color attach="background" args={['#e7f9e4']} />
                 {/* Fog removed to see background image */}
-                {/* <fog attach="fog" args={['#e7f9e4', 5, 40]} /> */}
+                <fog attach="fog" args={['#e7f9e4', 5, 40]} />
 
                 <ambientLight intensity={0.9} />
                 <pointLight position={[10, 10, 10]} intensity={0.8} />

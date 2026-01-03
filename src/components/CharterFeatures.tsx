@@ -75,7 +75,7 @@ export default function CharterFeatures() {
                     জুলাই সনদের মূল স্তম্ভসমূহ
                 </motion.h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto md:auto-rows-[250px]">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 auto-rows-auto md:auto-rows-[250px]">
                     {features.map((feature) => (
                         <motion.div
                             key={feature.id}
@@ -84,15 +84,17 @@ export default function CharterFeatures() {
                             viewport={{ once: true }}
                             whileHover={{ scale: 1.02 }}
                             onClick={() => setSelectedId(feature.id)}
-                            className={`${feature.colSpan} ${feature.rowSpan} cursor-pointer group`}
+                            className={`${feature.colSpan} ${feature.rowSpan} cursor-pointer group col-span-1`}
                         >
                             <ShinyCard className="h-full bg-white/40 hover:bg-white/60 transition-colors">
-                                <div className="p-8 h-full flex flex-col justify-between">
-                                    {feature.icon}
+                                <div className="p-3 md:p-8 h-full flex flex-col justify-between">
+                                    <div className="scale-75 origin-top-left md:scale-100">
+                                        {feature.icon}
+                                    </div>
                                     <div>
-                                        <h3 className="text-2xl font-bold mb-2 text-text-primary">{feature.title}</h3>
-                                        <p className="text-text-secondary line-clamp-3">{feature.shortDesc}</p>
-                                        <p className="text-primary-green text-sm font-bold mt-4 opacity-0 group-hover:opacity-100 transition-opacity">বিস্তারিত পড়ুন &gt;</p>
+                                        <h3 className="text-sm md:text-2xl font-bold mb-1 md:mb-2 text-text-primary leading-tight">{feature.title}</h3>
+                                        <p className="text-text-secondary text-xs md:text-base line-clamp-2 md:line-clamp-3 leading-snug">{feature.shortDesc}</p>
+                                        <p className="text-primary-green text-[10px] md:text-sm font-bold mt-2 md:mt-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">বিস্তারিত &gt;</p>
                                     </div>
                                 </div>
                             </ShinyCard>

@@ -13,7 +13,7 @@ export default function TimelineSection() {
     });
 
     return (
-        <section ref={containerRef} className="relative h-[1200vh]">
+        <section ref={containerRef} className="relative h-[600vh] md:h-[1200vh]">
             <div className="sticky top-0 h-screen w-full overflow-hidden">
                 {/* Background Image - Timeline.jpg (Grayscale) */}
                 {/* Background Image - Timeline.jpg (Grayscale) */}
@@ -33,9 +33,9 @@ export default function TimelineSection() {
                 <HistoryTimeTunnel scrollYProgress={scrollYProgress} />
 
                 {/* Overlay UI */}
-                <div className="absolute top-8 left-8 z-50 pointer-events-none">
+                <div className="absolute top-8 inset-x-0 z-50 pointer-events-none flex justify-center">
 
-                    <h1 className="text-primary-green text-2xl md:text-4xl font-abu-sayed drop-shadow-sm">সময়ের যাত্রা</h1>
+                    <h1 className="text-primary-green text-4xl md:text-5xl font-abu-sayed drop-shadow-sm text-center">সময়ের যাত্রা</h1>
                 </div>
 
                 {/* Progression Bar */}
